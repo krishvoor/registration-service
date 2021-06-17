@@ -137,7 +137,6 @@ func (km *KeyManager) fetchKeysFromBytes(keysBytes []byte) ([]*PublicKey, error)
 // fetchKeys fetches the keys from the given URL, unmarshalling them.
 func (km *KeyManager) fetchKeys(keysEndpointURL string) ([]*PublicKey, error) {
 	// use httpClient to perform request
-	httpClient := http.DefaultClient
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
