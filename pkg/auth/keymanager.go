@@ -3,6 +3,7 @@ package auth
 import (
 	"bytes"
 	"crypto/rsa"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"io"
