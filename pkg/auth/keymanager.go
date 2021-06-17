@@ -138,11 +138,11 @@ func (km *KeyManager) fetchKeysFromBytes(keysBytes []byte) ([]*PublicKey, error)
 func (km *KeyManager) fetchKeys(keysEndpointURL string) ([]*PublicKey, error) {
 	// use httpClient to perform request
 	httpClient := http.DefaultClient
-	req, err := http.NewRequest("GET", keysEndpointURL, nil)
-	if err != nil {
-		return nil, err
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
-	res, err := httpClient.Do(req)
+	httpClient := &http.Client{Transport: tr}
+	res, err := httpClient.Get(keysEndpointURL)
 	if err != nil {
 		return nil, err
 	}
